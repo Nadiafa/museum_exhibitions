@@ -1,7 +1,2 @@
-require "./lib/museum_exhibitions/version"
-require "./lib/museum_exhibitions/cli"
-
-
-module MuseumExhibitions
-  # Your code goes here...
-end
+require_relative "./museum_exhibitions/version"
+require_relative "./museum_exhibitions/cli"
