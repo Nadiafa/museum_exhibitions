@@ -9,7 +9,7 @@ class MuseumExhibitions::CLI
   end
 
   def list_options
-  	puts "This will be a method that lists three options that I will extract w scraping: "
+  	MuseumExhibitions::ExhibitionsListing.first_listing
   end
 
   def menu 
@@ -31,5 +31,5 @@ class MuseumExhibitions::CLI
   	  list_options
   	end
   end
-  
+
 end
