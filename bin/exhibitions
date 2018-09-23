@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require './lib/museum_exhibitions'
+
+puts ">>>>> TESTING bin/exhibitions <<<<<"
+
+MuseumExhibitions::CLI.new.call
