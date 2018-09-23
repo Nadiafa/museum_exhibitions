@@ -3,15 +3,20 @@ class MuseumExhibitions::CLI
   	system("clear")
 	puts "This application will show the current exhibitions at the British Museum"
 	puts "\n"
-    puts "Please select what you are interested in:"
+    
     list_options
+    menu
   end
 
   def list_options
   	puts "This will be a method that lists three options that I will extract w scraping: "
+  end
+
+  def menu 
+    puts "Please select what you are interested in:"
   	init_selection = gets.strip
 
-  	case init_selection
+  	case init_selection 
   	when "1"
   	  puts "This will be a method that lists the 'Special Exhibitions' that I will extract w scraping: "
   	when "2"
