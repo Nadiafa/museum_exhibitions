@@ -1,5 +1,8 @@
 class MuseumExhibitions::CLI
   def call
+  	system("clear")
+	puts "This application will show the current exhibitions at the British Museum"
+	puts "\n"
     puts "Please select what you are interested in:"
     list_options
   end
