@@ -2,6 +2,9 @@
 
 require './lib/museum_exhibitions'
 
-puts ">>>>> TESTING bin/exhibitions <<<<<"
+system("clear")
+puts "This application will show the current exhibitions at the British Museum"
 
 MuseumExhibitions::CLI.new.call
+
+gets
