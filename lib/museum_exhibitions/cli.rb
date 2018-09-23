@@ -31,4 +31,5 @@ class MuseumExhibitions::CLI
   	  list_options
   	end
   end
+  
 end
