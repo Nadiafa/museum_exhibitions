@@ -1,33 +1,33 @@
 class CLI
   def landing
   	welcome
-    list_options
-    menu
+    menu1
+    menu2
   end
 
   def welcome
     system("clear")
-    puts "This application will show the current exhibitions at the British Museum."
+    puts "These are the British Museum's main exhibition sections:"
   end 
 
-  def list_options
-  	ExhibitionsListing.first_listing
+  def menu1
+  	ExhibitionsListing.menu1_listing
   end
 
 
 
 # TODO 
 
-
-
-  def menu 
+  def menu2
     puts "\n"
     puts "Select the number of the list you would like to learn more about."
-  	init_selection = gets.strip
+  	input = gets.strip
 
-  	case init_selection 
+  	case input 
   	when "1"
-  	  puts "This will be a method that lists the 'Special Exhibitions' that I will extract w scraping: "
+      system("clear")
+  	  puts "These are the current 'Special Exhibitions':"
+      ExhibitionsListing.menu2_specials
   	when "2"
   	  puts "This will be a method that lists the 'Free exhibitions and displays' that I will extract w scraping: "
   	when "3" 
@@ -37,7 +37,7 @@ class CLI
   	  puts "That was not a valid option."
   	  puts "Here are the options again:"
   	  puts "\n"
-  	  list_options
+  	  menu1
   	end  
   end
 
