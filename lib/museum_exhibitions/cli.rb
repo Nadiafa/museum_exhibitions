@@ -30,6 +30,7 @@ class CLI
       ExhibitionsListing.menu2_specials
   	when "2"
   	  puts "This will be a method that lists the 'Free exhibitions and displays' that I will extract w scraping: "
+      ExhibitionsListing.menu2_free
   	when "3" 
   	  puts "This will be a method that lists the 'Today\'s events'  that I will extract w scraping: "
   	else 

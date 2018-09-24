@@ -26,6 +26,20 @@ class Scraper
     special_exhibitions
   end 
 
+  def self.scrape_free_menu(url)
+    doc = Nokogiri::HTML(open(url))
+    free_exhibitions = []
+
+    doc.css(".grid_12 .grid_12 .grid_4 .titleSpacer").each do |e|
+      event_name = e.css("h3 a").text
+      event_date = e.css(".pullOut").text
+      event_url = e.search("a").first.attr("href")
+      free_exhibitions << {event_name: event_name, event_date: event_date, event_url: event_url}
+    end 
+    binding.pry
+    free_exhibitions
+  end
+
 end 
 
 
