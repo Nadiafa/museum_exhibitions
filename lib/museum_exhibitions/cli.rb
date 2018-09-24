@@ -29,10 +29,11 @@ class CLI
   	  puts "These are the current 'Special Exhibitions':"
       ExhibitionsListing.menu2_specials
   	when "2"
-  	  puts "This will be a method that lists the 'Free exhibitions and displays' that I will extract w scraping: "
+  	  puts "These are the current 'Free exhibitions and displays':"
       ExhibitionsListing.menu2_free
   	when "3" 
-  	  puts "This will be a method that lists the 'Today\'s events'  that I will extract w scraping: "
+  	  puts "These are 'Today\'s events':"
+      ExhibitionsListing.menu2_today
   	else 
   	  system("clear")
   	  puts "That was not a valid option."

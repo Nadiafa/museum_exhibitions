@@ -15,13 +15,13 @@ class Scraper
 
   def self.scrape_special_menu(url)
     doc = Nokogiri::HTML(open(url))
+    
     special_exhibitions = []
  
-    doc.css(".grid_12 .grid_12 .grid_4").each do |e|
+    doc.css(".container .grid_12 .grid_12 .grid_4").each do |e|
       event_name = e.css("h3 a").text
-      event_date = e.css(".pullOut").text
       event_url = e.search("a").first.attr("href")
-      special_exhibitions << {event_name: event_name, event_date: event_date, event_url: event_url}
+      special_exhibitions << {event_name: event_name, event_url: event_url}
     end 
     special_exhibitions
   end 
@@ -30,39 +30,25 @@ class Scraper
     doc = Nokogiri::HTML(open(url))
     free_exhibitions = []
 
-    doc.css(".grid_12 .grid_12 .grid_4 .titleSpacer").each do |e|
-      event_name = e.css("h3 a").text
-      event_date = e.css(".pullOut").text
+    doc.css(".container .grid_12 .grid_4 .titleSpacer").each do |e|
+      event_name = e.css("h3").text
       event_url = e.search("a").first.attr("href")
-      free_exhibitions << {event_name: event_name, event_date: event_date, event_url: event_url}
+    free_exhibitions << {event_name: event_name, event_url: event_url}
     end 
-    binding.pry
     free_exhibitions
   end
 
+  def self.scrape_today_menu(url)
+    doc = Nokogiri::HTML(open(url))
+    today_events = []
+
+    doc.css(".container .grid_12 ul li").each do |e|
+      event_name = e.css("a .grid_6").text
+      event_url = e.search("a").first.attr("href")
+      today_events << {event_name: event_name, event_url: event_url}
+    end 
+    today_events
+  end 
+
 end 
 
-
-
-
-# SELECTORS
-# Special Exhibitions
-#   .grid_4
-#       Nombre
-#         .h3 a (text)
-#       Dates
-#         .pullOut (text)
-
-# Free exhibitions and displays
-#   .grid_4
-#     Nombre
-#       .h3 a (text)
-#     Dates
-#       .pullOut (text)
-
-# Today's events
-#   .grid_12
-#     Nombre
-#       .grid_6 (text)
-#     Time
-#       .grid_2 p (text)
