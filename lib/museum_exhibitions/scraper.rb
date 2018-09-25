@@ -15,10 +15,9 @@ class Scraper
 
   def self.scrape_special_menu(url)
     doc = Nokogiri::HTML(open(url))
-    
     special_exhibitions = []
  
-    doc.css(".container .grid_12 .grid_12 .grid_4").each do |e|
+    doc.css(".grid_12 .grid_12 .grid_4").each do |e|
       event_name = e.css("h3 a").text
       @event_url = e.search("a").first.attr("href")
       url_corrections
@@ -26,7 +25,6 @@ class Scraper
     end 
     special_exhibitions
   end 
-
   def self.scrape_free_menu(url)
     doc = Nokogiri::HTML(open(url))
     
@@ -80,11 +78,3 @@ class Scraper
   end
 
 end 
-
-
-
-
-
-
-
-

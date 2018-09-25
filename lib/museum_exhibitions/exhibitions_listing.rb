@@ -30,5 +30,4 @@ class ExhibitionsListing
       puts "  Follow this link to learn more: '#{e[:event_url]}'"
     end
   end
-
 end 
