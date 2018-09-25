@@ -8,7 +8,7 @@ class CLI
 
   def welcome
     system("clear")
-    puts "These are the British Museum's main exhibition sections:"
+    puts Constants::WELCOME_MESSAGE
   end 
 
   def menu1
@@ -17,25 +17,25 @@ class CLI
 
   def menu2
     puts "\n"
-    puts "Select the number of the list you would like to learn more about, or type 'exit' to leave."
+    puts Constants::LEARN_MORE_MESSAGE
   	input = gets.strip.downcase
 
   	case input 
   	when "1"
       system("clear")
-  	  puts "These are the current 'Special Exhibitions':"
+      puts Constants::SPECIAL_MESSAGE
       ExhibitionsListing.menu2_specials
   	when "2"
-  	  puts "These are the current 'Free exhibitions and displays':"
+      puts Constants::FREE_MESSAGE
       ExhibitionsListing.menu2_free
   	when "3" 
-  	  puts "These are 'Today\'s events':"
+      puts Constants::TODAY_MESSAGE
       ExhibitionsListing.menu2_today
     when "exit"
       exit_program
   	else 
   	  system("clear")
-  	  puts "That was not a valid option. Here are the options again:"
+      puts Constants::INVALID_INPUT_MESSAGE
   	  puts "\n"
   	  menu1
   	end  
@@ -43,7 +43,7 @@ class CLI
 
   def start_again
     puts "\n"
-    puts "Would you like to start again? (Y/n)"
+    puts Constants::START_AGAIN_MESSAGE
     input = gets.strip.downcase
 
       if input == "yes" || input == "y"
@@ -57,12 +57,9 @@ class CLI
   end
 
   def exit_program
-    puts "Goodbye!"
+    puts Constants::EXIT_MESSAGE
     gets
     exit!
   end
 
 end
-
-
-
