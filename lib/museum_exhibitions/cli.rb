@@ -3,6 +3,7 @@ class CLI
   	welcome
     menu1
     menu2
+    start_again
   end
 
   def welcome
@@ -14,14 +15,10 @@ class CLI
   	ExhibitionsListing.menu1_listing
   end
 
-
-
-# TODO 
-
   def menu2
     puts "\n"
-    puts "Select the number of the list you would like to learn more about."
-  	input = gets.strip
+    puts "Select the number of the list you would like to learn more about, or type 'exit' to leave."
+  	input = gets.strip.downcase
 
   	case input 
   	when "1"
@@ -34,39 +31,38 @@ class CLI
   	when "3" 
   	  puts "These are 'Today\'s events':"
       ExhibitionsListing.menu2_today
+    when "exit"
+      exit_program
   	else 
   	  system("clear")
-  	  puts "That was not a valid option."
-  	  puts "Here are the options again:"
+  	  puts "That was not a valid option. Here are the options again:"
   	  puts "\n"
   	  menu1
   	end  
   end
 
+  def start_again
+    puts "\n"
+    puts "Would you like to start again? (Y/n)"
+    input = gets.strip.downcase
+
+      if input == "yes" || input == "y"
+        landing
+      elsif input == "no" || input == "n" || input == "exit"
+        exit_program
+      else
+        puts "That was not a valid option."
+        start_again
+      end
+  end
+
+  def exit_program
+    puts "Goodbye!"
+    gets
+    exit!
+  end
+
 end
 
-
-
-# SELECTORS
-# Special Exhibitions
-#   .grid_4
-#       Nombre
-#         p 
-#       Dates
-#         .pullOut
-
-# Free exhibitions and displays
-#   .grid_4
-#     Nombre
-#       h3
-#     Dates
-#       .pullOut 
-
-# Today's events
-#   .grid_12
-#     Nombre
-#       .grid_6
-#     Time
-#       .grid_2 p
 
 
