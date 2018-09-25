@@ -26,9 +26,11 @@ class CLI
       puts Constants::SPECIAL_MESSAGE
       ExhibitionsListing.menu2_specials
   	when "2"
+      system("clear")
       puts Constants::FREE_MESSAGE
       ExhibitionsListing.menu2_free
   	when "3" 
+      system("clear")
       puts Constants::TODAY_MESSAGE
       ExhibitionsListing.menu2_today
     when "exit"
