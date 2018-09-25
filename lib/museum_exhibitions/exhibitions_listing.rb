@@ -1,5 +1,4 @@
 class ExhibitionsListing
-  attr_accessor :name
 
   def self.menu1_listing
     selected_titles = Scraper.scrape_main_menu(Constants::URL)
@@ -9,17 +8,26 @@ class ExhibitionsListing
   end
 
   def self.menu2_specials
-  	exhibitions = Scraper.scrape_special_menu(Constants::URL)
-  	exhibitions.each_with_index do |e,i|
-  		puts "\n"
-  		puts "#{i+1}. '#{e[:event_name]}' - #{e[:event_date]}."
-  		puts "  Follow this link to learn more:  "
-  		puts "  '#{e[:event_url]}' "
-  		puts "\n"
-  	end
+    #@exhibitions  = Scrapper.scrape_generic(Constants::URL,".container .grid_12 ul li","a .grid_6")
+  	@exhibitions = Scraper.scrape_special_menu(Constants::URL)
+    menu2_iterations
   end
 
+  def self.menu2_free
+  	@exhibitions = Scraper.scrape_free_menu(Constants::URL)
+    menu2_iterations
+  end 
 
-  #TODO   NEXT: Remove the additional input "Free" from some of the returned exhibitions.
-  		# THEN: add listing for Today's Events, and change CLI input wording.
+  def self.menu2_today
+	  @exhibitions = Scraper.scrape_today_menu(Constants::URL)
+    menu2_iterations
+  end
+
+  def self.menu2_iterations
+    @exhibitions.each_with_index do |e,i|
+      puts "\n"
+      puts "#{i+1}. '#{e[:event_name]}'"
+      puts "  Follow this link to learn more: '#{e[:event_url]}'"
+    end
+  end
 end 

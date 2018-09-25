@@ -3,68 +3,65 @@ class CLI
   	welcome
     menu1
     menu2
+    start_again
   end
 
   def welcome
     system("clear")
-    puts "These are the British Museum's main exhibition sections:"
+    puts Constants::WELCOME_MESSAGE
   end 
 
   def menu1
   	ExhibitionsListing.menu1_listing
   end
 
-
-
-# TODO 
-
   def menu2
     puts "\n"
-    puts "Select the number of the list you would like to learn more about."
-  	input = gets.strip
+    puts Constants::LEARN_MORE_MESSAGE
+  	input = gets.strip.downcase
 
   	case input 
   	when "1"
       system("clear")
-  	  puts "These are the current 'Special Exhibitions':"
+      puts Constants::SPECIAL_MESSAGE
       ExhibitionsListing.menu2_specials
   	when "2"
-  	  puts "This will be a method that lists the 'Free exhibitions and displays' that I will extract w scraping: "
+      system("clear")
+      puts Constants::FREE_MESSAGE
+      ExhibitionsListing.menu2_free
   	when "3" 
-  	  puts "This will be a method that lists the 'Today\'s events'  that I will extract w scraping: "
+      system("clear")
+      puts Constants::TODAY_MESSAGE
+      ExhibitionsListing.menu2_today
+    when "exit"
+      exit_program
   	else 
   	  system("clear")
-  	  puts "That was not a valid option."
-  	  puts "Here are the options again:"
+      puts Constants::INVALID_INPUT_MESSAGE
   	  puts "\n"
   	  menu1
   	end  
   end
 
+  def start_again
+    puts "\n"
+    puts Constants::START_AGAIN_MESSAGE
+    input = gets.strip.downcase
+
+      if input == "yes" || input == "y"
+        landing
+      elsif input == "no" || input == "n" || input == "exit"
+        exit_program
+      else
+        puts "That was not a valid option."
+        start_again
+      end
+  end
+
+  def exit_program
+    puts Constants::EXIT_MESSAGE
+    gets
+    exit!
+  end
+
 end
-
-
-
-# SELECTORS
-# Special Exhibitions
-#   .grid_4
-#       Nombre
-#         p 
-#       Dates
-#         .pullOut
-
-# Free exhibitions and displays
-#   .grid_4
-#     Nombre
-#       h3
-#     Dates
-#       .pullOut 
-
-# Today's events
-#   .grid_12
-#     Nombre
-#       .grid_6
-#     Time
-#       .grid_2 p
-
-
