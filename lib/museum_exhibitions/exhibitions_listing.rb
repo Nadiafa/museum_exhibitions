@@ -8,6 +8,7 @@ class ExhibitionsListing
   end
 
   def self.menu2_specials
+    #@exhibitions  = Scrapper.scrape_generic(Constants::URL,".container .grid_12 ul li","a .grid_6")
   	@exhibitions = Scraper.scrape_special_menu(Constants::URL)
     menu2_iterations
   end

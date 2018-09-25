@@ -11,6 +11,11 @@ Add this line to your application's Gemfile:
 ```ruby
 gem 'museum_exhibitions'
 ```
+and after execute:
+
+```ruby
+./bin/exhibitions
+```
 
 And then execute:
 

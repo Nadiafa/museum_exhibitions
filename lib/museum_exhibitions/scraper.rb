@@ -55,6 +55,21 @@ class Scraper
     today_events
   end 
 
+
+ # def self.scrape_generic(url,cSS,cSSName)
+ #    doc = Nokogiri::HTML(open(url))
+ #    events = []
+
+ #    doc.css(cssSelectorString).each do |e|
+ #      event_name = e.css(cSSName).text
+ #      @event_url = e.search("a").first.attr("href")
+ #      url_corrections
+ #      events << {event_name: event_name, event_url: @event_url}
+ #    end 
+ #    events
+ #  end 
+
+
   def self.url_corrections
     if !@event_url.include? "http://www.britishmuseum.org"
       @event_url = "http://www.britishmuseum.org#{@event_url}"
@@ -65,3 +80,11 @@ class Scraper
   end
 
 end 
+
+
+
+
+
+
+
+

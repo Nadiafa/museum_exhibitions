@@ -10,4 +10,11 @@ class Constants
   START_AGAIN_MESSAGE   = "Would you like to start again? (Y/n)"
   EXIT_MESSAGE          = "\nGoodbye!"
 
+  
+ 
 end 
+
+# class Selectors 
+#   SPECIAL_SELECTOR_MENU2 = ".container .grid_12 ul li"
+#   SPECIAL_SELECTOR_MENU2_NAME =  "a .grid_6")
+# end
