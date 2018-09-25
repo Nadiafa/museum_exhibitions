@@ -7,5 +7,6 @@ class Constants
   FREE_MESSAGE          = "These are the current 'Free exhibitions and displays':"
   TODAY_MESSAGE         = "These are 'Today\'s events':"
   INVALID_INPUT_MESSAGE = "\n That was not a valid option. Here are the options again:"
+  INVALID_INPUT_MESSAGE = "\n Goodbye!"
 
 end 
