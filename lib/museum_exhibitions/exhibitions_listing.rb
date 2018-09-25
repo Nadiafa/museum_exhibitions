@@ -26,7 +26,7 @@ class ExhibitionsListing
     @exhibitions.each_with_index do |e,i|
       puts "\n"
       puts "#{i+1}. '#{e[:event_name]}'"
-      puts "  Follow this link to learn more: '#{e[:event_url]}' "
+      puts "  Follow this link to learn more: '#{e[:event_url]}'"
     end
   end
 
