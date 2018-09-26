@@ -7,7 +7,7 @@ class CLI
   end
 
   def welcome
-    system("clear")
+    clear_screen
     puts Constants::WELCOME_MESSAGE
   end 
 
@@ -23,21 +23,21 @@ class CLI
 
   	case input 
   	when "1"
-      system("clear")
+      clear_screen
       puts Constants::SPECIAL_MESSAGE
       ExhibitionsListing.menu2_specials
   	when "2"
-      system("clear")
+      clear_screen
       puts Constants::FREE_MESSAGE
       ExhibitionsListing.menu2_free
   	when "3" 
-      system("clear")
+      clear_screen
       puts Constants::TODAY_MESSAGE
       ExhibitionsListing.menu2_today
     when "exit"
       exit_program
   	else 
-  	  system("clear")
+  	  clear_screen
       puts Constants::INVALID_INPUT_MESSAGE
       puts Constants::SELECT_AGAIN_MESSAGE
   	  puts "\n"
@@ -64,9 +64,12 @@ class CLI
 
   def exit_program
     puts Constants::EXIT_MESSAGE
-
     gets
     exit!
   end
+
+  def clear_screen
+    system("clear")
+  end 
 
 end
