@@ -18,6 +18,7 @@ class CLI
   def menu2
     puts "\n"
     puts Constants::LEARN_MORE_MESSAGE
+
   	input = gets.strip.downcase
 
   	case input 
@@ -38,14 +39,17 @@ class CLI
   	else 
   	  system("clear")
       puts Constants::INVALID_INPUT_MESSAGE
+      puts Constants::SELECT_AGAIN_MESSAGE
   	  puts "\n"
-  	  menu1
+      menu1
+  	  menu2
   	end  
   end
 
   def start_again
     puts "\n"
     puts Constants::START_AGAIN_MESSAGE
+
     input = gets.strip.downcase
 
       if input == "yes" || input == "y"
@@ -53,13 +57,14 @@ class CLI
       elsif input == "no" || input == "n" || input == "exit"
         exit_program
       else
-        puts "That was not a valid option."
+        puts Constants::INVALID_INPUT_MESSAGE
         start_again
       end
   end
 
   def exit_program
     puts Constants::EXIT_MESSAGE
+
     gets
     exit!
   end
