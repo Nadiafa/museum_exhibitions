@@ -13,67 +13,26 @@ class Scraper
     selected_titles  
   end 
 
-  def self.scrape_special_menu(url)
-    doc = Nokogiri::HTML(open(url))
-    special_exhibitions = []
- 
-    doc.css(".grid_12 .grid_12 .grid_4").each do |e|
-      event_name = e.css("h3 a").text
-      @event_url = e.search("a").first.attr("href")
-      url_corrections
-      special_exhibitions << {event_name: event_name, event_url: @event_url}
-    end 
-    special_exhibitions
-  end 
-  def self.scrape_free_menu(url)
-    doc = Nokogiri::HTML(open(url))
-    
-    free_exhibitions = []
+  def self.scrape_secondary_menu(url, specific_selector, name_selector)
+     doc = Nokogiri::HTML(open(url))
 
-    doc.css(".container .grid_12 .grid_4 .titleSpacer").each do |e|
-      event_name = e.css("h3").text
-      @event_url = e.search("a").first.attr("href")
-      url_corrections
-    free_exhibitions << {event_name: event_name, event_url: @event_url}
-    end 
-    free_exhibitions
-  end
+     events = []
 
-  def self.scrape_today_menu(url)
-    doc = Nokogiri::HTML(open(url))
-    
-    today_events = []
-
-    doc.css(".container .grid_12 ul li").each do |e|
-      event_name = e.css("a .grid_6").text
-      @event_url = e.search("a").first.attr("href")
-      url_corrections
-      today_events << {event_name: event_name, event_url: @event_url}
-    end 
-    today_events
-  end 
-
-
- # def self.scrape_generic(url,cSS,cSSName)
- #    doc = Nokogiri::HTML(open(url))
- #    events = []
-
- #    doc.css(cssSelectorString).each do |e|
- #      event_name = e.css(cSSName).text
- #      @event_url = e.search("a").first.attr("href")
- #      url_corrections
- #      events << {event_name: event_name, event_url: @event_url}
- #    end 
- #    events
- #  end 
-
+     doc.css(specific_selector).each do |e|
+       event_name = e.css(name_selector).text
+       @event_url = e.search("a").first.attr("href")
+       url_corrections
+       events << {event_name: event_name, event_url: @event_url}
+     end 
+     events
+   end 
 
   def self.url_corrections
     if !@event_url.include? "http://www.britishmuseum.org"
       @event_url = "http://www.britishmuseum.org#{@event_url}"
     end
-    if @event_url.include? " exclusive"
-      @event_url = @event_url.split(' exclusive')[0]
+    if @event_url.include? "?"
+      @event_url = @event_url.split('?')[0]
     end
   end
 
