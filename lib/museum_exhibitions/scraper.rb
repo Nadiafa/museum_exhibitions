@@ -9,6 +9,7 @@ class Scraper
       name = e.css("h2").text
       all_titles << name
     end
+    
     selected_titles = [all_titles[1], all_titles[2], all_titles[3]]
     selected_titles  
   end 
@@ -25,6 +26,7 @@ class Scraper
        url_corrections
        events << {name: name, url: @url, category: category}
      end 
+
      events
    end 
 
@@ -36,5 +38,4 @@ class Scraper
       @url = @url.split('?')[0]
     end
   end
-
 end 

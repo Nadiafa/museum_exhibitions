@@ -4,8 +4,8 @@ class CLI
     clear_screen
     puts Constants::WELCOME_MESSAGE
 
-    @titles = ExhibitionsListing.first_level
-    @events = ExhibitionsListing.second_level
+    @titles = ExhibitionsListing.main_menu
+    @events = ExhibitionsListing.events_list
 
     print_titles
 

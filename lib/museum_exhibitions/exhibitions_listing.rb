@@ -1,13 +1,13 @@
 class ExhibitionsListing
 
-  def self.first_level
+  def self.main_menu
     Scraper.scrape_main_menu(Constants::URL)
   end
 
-  def self.second_level
-    Event.create_from_collection(Scraper.scrape_secondary_menu(Constants::URL, Constants::SPECIFIC_SELECTOR_SPECIAL, Constants::NAME_SELECTOR_SPECIAL,"cat1"))
-    Event.create_from_collection(Scraper.scrape_secondary_menu(Constants::URL, Constants::SPECIFIC_SELECTOR_FREE, Constants::NAME_SELECTOR_FREE,"cat2"))
-    Event.create_from_collection(Scraper.scrape_secondary_menu(Constants::URL, Constants::SPECIFIC_SELECTOR_TODAY, Constants::NAME_SELECTOR_TODAY,"cat3"))
+  def self.events_list
+    Event.create_listing(Scraper.scrape_secondary_menu(Constants::URL, Constants::SPECIFIC_SELECTOR_SPECIAL, Constants::NAME_SELECTOR_SPECIAL,"cat1"))
+    Event.create_listing(Scraper.scrape_secondary_menu(Constants::URL, Constants::SPECIFIC_SELECTOR_FREE, Constants::NAME_SELECTOR_FREE,"cat2"))
+    Event.create_listing(Scraper.scrape_secondary_menu(Constants::URL, Constants::SPECIFIC_SELECTOR_TODAY, Constants::NAME_SELECTOR_TODAY,"cat3"))
     Event.all
   end
 

@@ -1,6 +1,5 @@
 class Event
-
-attr_accessor :name, :url, :category
+  attr_accessor :name, :url, :category
 
   @@all = []
 
@@ -8,10 +7,11 @@ attr_accessor :name, :url, :category
     event_hash.each do |attribute, value|
       self.send("#{attribute}=", value)
     end
+    
     @@all << self
   end
 
-  def self.create_from_collection(events)
+  def self.create_listing(events)
     events.each do |event|
       Event.new(event)
     end
