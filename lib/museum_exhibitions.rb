@@ -6,5 +6,6 @@ require_relative "./museum_exhibitions/cli"
 require_relative "./museum_exhibitions/exhibitions_listing"
 require_relative "./museum_exhibitions/scraper"
 require_relative "./museum_exhibitions/constants"
+require_relative "./museum_exhibitions/event"
 
 
