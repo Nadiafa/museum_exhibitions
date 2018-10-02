@@ -32,7 +32,7 @@ class Scraper
 
   def self.url_corrections
     if !@url.include? "http://www.britishmuseum.org"
-      @url = "http://www.britishmuseum.org#{@event_url}"
+      @url = "http://www.britishmuseum.org#{@url}"
     end
     if @url.include? "?"
       @url = @url.split('?')[0]
