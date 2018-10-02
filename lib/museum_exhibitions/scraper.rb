@@ -6,33 +6,34 @@ class Scraper
     all_titles = []
 
     doc.css(".container .grid_12").each do |e|
-      event_name = e.css("h2").text
-      all_titles << event_name
+      name = e.css("h2").text
+      all_titles << name
     end
     selected_titles = [all_titles[1], all_titles[2], all_titles[3]]
     selected_titles  
   end 
 
-  def self.scrape_secondary_menu(url, specific_selector, name_selector)
+
+  def self.scrape_secondary_menu(url, specific_selector, name_selector,category)
      doc = Nokogiri::HTML(open(url))
 
      events = []
 
      doc.css(specific_selector).each do |e|
-       event_name = e.css(name_selector).text
-       @event_url = e.search("a").first.attr("href")
+       name = e.css(name_selector).text
+       @url = e.search("a").first.attr("href")
        url_corrections
-       events << {event_name: event_name, event_url: @event_url}
+       events << {name: name, url: @url, category: category}
      end 
      events
    end 
 
   def self.url_corrections
-    if !@event_url.include? "http://www.britishmuseum.org"
-      @event_url = "http://www.britishmuseum.org#{@event_url}"
+    if !@url.include? "http://www.britishmuseum.org"
+      @url = "http://www.britishmuseum.org#{@event_url}"
     end
-    if @event_url.include? "?"
-      @event_url = @event_url.split('?')[0]
+    if @url.include? "?"
+      @url = @url.split('?')[0]
     end
   end
 
