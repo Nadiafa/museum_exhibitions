@@ -1,66 +1,73 @@
 class CLI
-  def landing
-  	welcome
-    menu1
-    menu2
-    start_again
-  end
 
-  def welcome
+  def landing
     clear_screen
     puts Constants::WELCOME_MESSAGE
-  end 
 
-  def menu1
-  	ExhibitionsListing.menu1_listing
+    @titles = ExhibitionsListing.first_level
+    @events = ExhibitionsListing.second_level
+
+    print_titles
+
+    menu2
+
+    start_again
   end
 
   def menu2
     puts "\n"
     puts Constants::LEARN_MORE_MESSAGE
-
   	input = gets.strip.downcase
+    clear_screen
 
   	case input 
   	when "1"
-      clear_screen
-      puts Constants::SPECIAL_MESSAGE
-      ExhibitionsListing.menu2_specials
+      puts Constants::MESSAGE_CAT1
+      print_events(Event.all_by_category("cat1"))
+
   	when "2"
-      clear_screen
-      puts Constants::FREE_MESSAGE
-      ExhibitionsListing.menu2_free
+      puts Constants::MESSAGE_CAT2
+      print_events(Event.all_by_category("cat2"))
+
   	when "3" 
-      clear_screen
-      puts Constants::TODAY_MESSAGE
-      ExhibitionsListing.menu2_today
+      puts Constants::MESSAGE_CAT3
+      print_events(Event.all_by_category("cat3"))
+
     when "exit"
       exit_program
   	else 
-  	  clear_screen
-      puts Constants::INVALID_INPUT_MESSAGE
-      puts Constants::SELECT_AGAIN_MESSAGE
-  	  puts "\n"
-      menu1
-  	  menu2
+  	  landing
   	end  
   end
 
   def start_again
     puts "\n"
     puts Constants::START_AGAIN_MESSAGE
-
     input = gets.strip.downcase
 
-      if input == "yes" || input == "y"
-        landing
-      elsif input == "no" || input == "n" || input == "exit"
-        exit_program
-      else
-        puts Constants::INVALID_INPUT_MESSAGE
-        start_again
-      end
+    if input == "yes" || input == "y"
+      Event.clear
+      landing
+    elsif input == "no" || input == "n" || input == "exit"
+      exit_program
+    else
+      puts Constants::INVALID_INPUT_MESSAGE
+      start_again
+    end
   end
+
+ def print_titles
+    @titles.each_with_index do |e, i|
+      puts "  #{i+1}. #{e}."
+    end     
+  end 
+
+  def print_events(events)
+      events.each_with_index do |event, i| 
+        puts "  - #{event.name}"
+        puts "    Find out more here:  #{event.url}"        
+      end
+  end 
 
   def exit_program
     puts Constants::EXIT_MESSAGE
