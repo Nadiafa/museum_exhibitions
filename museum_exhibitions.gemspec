@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["nadia"]
   spec.email         = ["nadiafa581@gmail.com"]
 
-  spec.summary       = "Current events at the British Museum"
-  spec.description   = "Allows viewing a list of special exhibitions, free exhibitions and today's events."
+  spec.summary       = "Current exhibitions and events at the British Museum"
+  spec.description   = "Allows viewing a list of special exhibitions, free exhibitions and today's events, and provide a direct link to each of them."
   spec.homepage      = "https://github.com/Nadiafa/museum_exhibitions"
   spec.license       = "MIT"
 
