@@ -24,24 +24,22 @@ class CLI
   	when "1"
       puts Constants::MESSAGE_CAT1
       print_events(Event.all_by_category("cat1"))
-
   	when "2"
       puts Constants::MESSAGE_CAT2
       print_events(Event.all_by_category("cat2"))
-
   	when "3" 
       puts Constants::MESSAGE_CAT3
-      print_events(Event.all_by_category("cat3"))
-
+      print_events(Event.all_by_category("cat3"))    
     when "exit"
       exit_program
   	else 
+      puts Constants::INVALID_INPUT_MESSAGE
+      start_again
   	  landing
   	end  
   end
 
   def start_again
-    puts "\n"
     puts Constants::START_AGAIN_MESSAGE
     input = gets.strip.downcase
 
@@ -56,17 +54,17 @@ class CLI
     end
   end
 
- def print_titles
+  def print_titles
     @titles.each_with_index do |e, i|
       puts "  #{i+1}. #{e}."
     end     
   end 
 
   def print_events(events)
-      events.each_with_index do |event, i| 
-        puts "  - #{event.name}"
-        puts "    Find out more here:  #{event.url}"        
-      end
+    events.each_with_index do |event, i| 
+      puts "  - #{event.name}"
+      puts "    Find out more here:  #{event.url}"        
+    end
   end 
 
   def exit_program

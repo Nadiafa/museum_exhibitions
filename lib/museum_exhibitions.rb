@@ -5,7 +5,6 @@ require_relative "./museum_exhibitions/version"
 require_relative "./museum_exhibitions/cli"
 require_relative "./museum_exhibitions/exhibitions_listing"
 require_relative "./museum_exhibitions/scraper"
-require_relative "./museum_exhibitions/constants"
 require_relative "./museum_exhibitions/event"
 
 
@@ -20,7 +19,6 @@ module Constants
   MESSAGE_CAT2          = "These are the current 'Free exhibitions and displays':"
   MESSAGE_CAT3          = "These are 'Today\'s events':"
   INVALID_INPUT_MESSAGE = "\nThat was not a valid option."
-  SELECT_AGAIN_MESSAGE  = "Please choose from the following:"
   START_AGAIN_MESSAGE   = "Would you like to start again? (Y/n)"
   EXIT_MESSAGE          = "\nGoodbye!"
 
@@ -32,12 +30,3 @@ module Constants
   NAME_SELECTOR_FREE        = "h3 a"
   NAME_SELECTOR_TODAY       = "a .grid_6"
 end 
-
-
-
-require 'nokogiri'
-require 'open-uri'
-
-doc = Nokogiri::HTML(open("http://www.britishmuseum.org/whats_on.aspx")).css(".container .grid_12 .grid_4 .titleSpacer")
-
-doc.css(".container .grid_12 .grid_4 .titleSpacer")

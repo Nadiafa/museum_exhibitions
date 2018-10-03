@@ -11,7 +11,6 @@ class Scraper
     end
     
     selected_titles = [all_titles[1], all_titles[2], all_titles[3]]
-    selected_titles  
   end 
 
 
