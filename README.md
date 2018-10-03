@@ -1,33 +1,17 @@
 # MuseumExhibitions
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/museum_exhibitions`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+With this gem you can view the British Museum's main exhibitions and events and the direct links to them.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Clone from Github"
 
-```ruby
-gem 'museum_exhibitions'
-```
-and after execute:
+    $ git clone git@github.com:Nadiafa/museum_exhibitions.git
 
-```ruby
-./bin/exhibitions
-```
 
-And then execute:
+To execute:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install museum_exhibitions
-
-## Usage
-
-TODO: Write usage instructions here
+    $ ruby ./bin/exhibitions
 
 ## Development
 
