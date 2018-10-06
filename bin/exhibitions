@@ -2,4 +2,4 @@
 
 require './lib/museum_exhibitions'
 
-CLI.new.landing
+CLI.new.start
