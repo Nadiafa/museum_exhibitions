@@ -1,5 +1,5 @@
 class Event
-  attr_accessor :name, :url, :category
+  attr_accessor :category, :name, :url
 
   @@all = []
 
@@ -7,7 +7,6 @@ class Event
     event_hash.each do |attribute, value|
       self.send("#{attribute}=", value)
     end
-    
     @@all << self
   end
 
@@ -24,8 +23,4 @@ class Event
   def self.all_by_category(category)
   	@@all.select {|event| event.category == category }
   end	
-
-  def self.clear
-    @@all.clear
-  end
 end
