@@ -1,55 +1,77 @@
 class CLI
 
-  def landing
-    clear_screen
-    puts Constants::WELCOME_MESSAGE
+  def start
+    menu1
+    menu2
+    start_again
+  end 
 
-    @titles = ExhibitionsListing.main_menu
-    @events = ExhibitionsListing.events_list
+  def menu1
+    clear_screen
+    puts "These are the British Museum's main exhibition sections:"
+    
+    if @titles == nil
+      @titles = Scraper.scrape_main_menu("http://www.britishmuseum.org/whats_on.aspx")
+    end
 
     print_titles
-
-    menu2
-
-    start_again
-  end
+  end 
 
   def menu2
     puts "\n"
-    puts Constants::LEARN_MORE_MESSAGE
+    puts "\nSelect the number of the list you would like to learn more about."
   	input = gets.strip.downcase
     clear_screen
 
   	case input 
-  	when "1"
-      puts Constants::MESSAGE_CAT1
-      print_events(Event.all_by_category("cat1"))
-  	when "2"
-      puts Constants::MESSAGE_CAT2
-      print_events(Event.all_by_category("cat2"))
-  	when "3" 
-      puts Constants::MESSAGE_CAT3
-      print_events(Event.all_by_category("cat3"))    
+    when "1"
+      puts "These are the current 'Special Exhibitions':"
+
+      if Event.all_by_category(Scraper.categories[0]) == []
+        @events = Event.create_listing(Scraper.scrape_secondary_menu("http://www.britishmuseum.org/whats_on.aspx", ".grid_12 .grid_12 .grid_4", "h3 a", Scraper.categories[0])) 
+      end
+
+      print_events(Event.all_by_category(Scraper.categories[0]))
+  	
+    when "2"
+      puts "These are the current 'Free exhibitions and displays':"
+
+      if Event.all_by_category(Scraper.categories[1]) == []
+        @events = Event.create_listing(Scraper.scrape_secondary_menu("http://www.britishmuseum.org/whats_on.aspx", ".container .grid_12 .grid_4 .titleSpacer", "h3 a", Scraper.categories[1]))
+      end
+
+      print_events(Event.all_by_category(Scraper.categories[1]))
+  	
+    when "3" 
+      puts "These are 'Today\'s events':"
+
+      if Event.all_by_category(Scraper.categories[2]) == []
+      @events = Event.create_listing(Scraper.scrape_secondary_menu("http://www.britishmuseum.org/whats_on.aspx", ".container .grid_12 ul li", "a .grid_6", Scraper.categories[2])) 
+    end
+
+      print_events(Event.all_by_category(Scraper.categories[2]))    
+    
     when "exit"
       exit_program
-  	else 
-      puts Constants::INVALID_INPUT_MESSAGE
+  	
+    else 
+      clear_screen
+      puts "\nThat was not a valid option."
       start_again
-  	  landing
+  	  start
   	end  
   end
 
   def start_again
-    puts Constants::START_AGAIN_MESSAGE
+    puts "Would you like to start again? (Y/n)"
     input = gets.strip.downcase
 
     if input == "yes" || input == "y"
-      Event.clear
-      landing
+      start
     elsif input == "no" || input == "n" || input == "exit"
       exit_program
     else
-      puts Constants::INVALID_INPUT_MESSAGE
+      puts "\nThat was not a valid option."
       start_again
     end
   end
@@ -68,8 +90,7 @@ class CLI
   end 
 
   def exit_program
-    puts Constants::EXIT_MESSAGE
-    gets
+    puts "\nGoodbye!"
     exit!
   end
 
