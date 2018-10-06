@@ -1,17 +1,20 @@
 class Scraper
 
+  @@categories = []
+
   def self.scrape_main_menu(url)
     doc = Nokogiri::HTML(open(url))
 
-    all_titles = []
-
-    doc.css(".container .grid_12").each do |e|
+    @@categories = doc.css(".container .grid_12").map do |e|
       name = e.css("h2").text
-      all_titles << name
     end
     
-    selected_titles = [all_titles[1], all_titles[2], all_titles[3]]
+    @@categories = [@@categories[1], @@categories[2], @@categories[3]]
   end 
+
+  def self.categories
+    @@categories
+  end
 
 
   def self.scrape_secondary_menu(url, specific_selector, name_selector,category)
@@ -22,8 +25,9 @@ class Scraper
      doc.css(specific_selector).each do |e|
        name = e.css(name_selector).text
        @url = e.search("a").first.attr("href")
+       category = category
        url_corrections
-       events << {name: name, url: @url, category: category}
+       events << {category: category, name: name, url: @url}
      end 
 
      events
